@@ -1,12 +1,23 @@
 name: user_input_PR
 
 
-on: workflow_dispatch
-
+on:
+  push:
+      branches:
+          - 'user_changes*'
 jobs:
   trigger_appsAway:
     runs-on: ubuntu-latest
     steps:
+    
+    - name: print event
+      run: echo " ${{ toJson(github.event) }}"
+      
+    - name: Parse branch name
+      id: parsed_branch
+      run: |
+        echo ::set-output name=branch::$(echo ${{ github.event.ref }} | sed -nr 's/.*refs\/heads\/(.*)/\1/p')
+        
     - name: Get Token
       id: get_workflow_token
       uses: tibdex/github-app-token@v1
@@ -23,4 +34,4 @@ jobs:
         token: ${{ env.GITHUB_APPS_TOKEN }}
         repository: my-organization-for-testing/human-sensing
         event-type: user_changes
-        client-payload: '{ "type": "user_changes", "token": "${{ env.GITHUB_APPS_TOKEN }}" }'
+        client-payload: '{ "type": "user_changes", "token": "${{ env.GITHUB_APPS_TOKEN }}", "branch_name": "${{ steps.parsed_branch.outputs.branch }}" }'
