@@ -1,0 +1,28 @@
+name: user_input_PR
+
+
+on:
+  push:
+    paths:
+      - 'speech/**'
+
+jobs:
+  trigger_appsAway:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Token
+      id: get_workflow_token
+      uses: tibdex/github-app-token@v1
+      with:
+        private_key: ${{ secrets.ANOTHER_PRIVATE_KEY }}
+        app_id: ${{ secrets.ANOTHER_APP_ID }}
+        
+    - name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v1
+      env:
+        GITHUB_APPS_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+      with:
+        token: ${{ secrets.GITHUB_APPS_TOKEN }}
+        repository: my-organization-for-testing/human-sensing
+        event-type: user_changes
+        client-payload: '{ "type": "user_changes", "branch_name": "user-changes" }'
