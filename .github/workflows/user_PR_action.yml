@@ -1,7 +1,7 @@
 name: user_input_PR
 
 
-on: push
+on: workflow_dispatch
 
 jobs:
   trigger_appsAway:
