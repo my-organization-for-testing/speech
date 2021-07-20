@@ -23,4 +23,4 @@ jobs:
         token: ${{ env.GITHUB_APPS_TOKEN }}
         repository: my-organization-for-testing/human-sensing
         event-type: user_changes
-        client-payload: '{ "type": "user_changes", "branch_name": "user-changes" }'
+        client-payload: '{ "type": "user_changes", "branch_name": "main" }'
