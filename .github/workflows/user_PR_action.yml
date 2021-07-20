@@ -1,11 +1,10 @@
 name: user_input_PR
 
 
-on:
-  push:
-    paths:
-      - 'speech/**'
-
+on: 
+    push:
+        paths:
+            - 'speech/**'
 jobs:
   trigger_appsAway:
     runs-on: ubuntu-latest
