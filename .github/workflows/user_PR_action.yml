@@ -5,6 +5,7 @@ on:
   push:
       branches:
           - 'user_changes*'
+          
 jobs:
   trigger_appsAway:
     runs-on: ubuntu-latest
