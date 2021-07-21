@@ -25,7 +25,7 @@ jobs:
       with:
         private_key: ${{ secrets.ILARIA_APP_KEY }}
         app_id: ${{ secrets.ILARIA_APP_ID }}
-        repository: my-organization-for-testing/speech
+        repository: my-organization-for-testing/human-sensing
         
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
