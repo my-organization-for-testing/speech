@@ -26,13 +26,4 @@ jobs:
         private_key: ${{ secrets.ILARIA_APP_KEY }}
         app_id: ${{ secrets.ILARIA_APP_ID }}
         repository: my-organization-for-testing/human-sensing
-        
-    - name: Repository Dispatch
-      uses: peter-evans/repository-dispatch@v1
-      env:
-        GITHUB_APPS_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
-      with:
-        token: ${{ env.GITHUB_APPS_TOKEN }}
-        repository: my-organization-for-testing/human-sensing
-        event-type: user_changes
-        client-payload: '{ "type": "user_changes", "token": "${{ env.GITHUB_APPS_TOKEN }}", "branch_name": "${{ steps.parsed_branch.outputs.branch }}" }'
+ 
