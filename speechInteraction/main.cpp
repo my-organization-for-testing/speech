@@ -1,7 +1,3 @@
-test
-
-test
-
 
 ..bool testing;
 ......
